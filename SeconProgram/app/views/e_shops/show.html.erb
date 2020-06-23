@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Productimage:</strong>
+  <%= @e_shop.productImage %>
+</p>
+
+<p>
+  <strong>Productname:</strong>
+  <%= @e_shop.productName %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @e_shop.quantity %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @e_shop.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @e_shop.description %>
+</p>
+
+<%= link_to 'Edit', edit_e_shop_path(@e_shop) %> |
+<%= link_to 'Back', e_shops_path %>

@@ -1,0 +1,37 @@
+.style_image{
+    position: relative;
+}
+.image_size{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+}
+.style_table{
+    background: darkcyan;
+    border: 1px solid #999999;
+    border-collapse: collapse;
+}
+.style_productList{
+    background: #BBBBBB;
+}
+tr,td{
+    border: 1px solid #999999;
+    margin: 0;
+    padding: 0;
+}
+td{
+
+    height: 100px;
+    line-height: 100px;
+    white-space: nowrap;
+}
+
+.text{
+    text-align: center;
+}
+.style_th{
+    text-align: center;
+}

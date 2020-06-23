@@ -1,0 +1,34 @@
+<h1>E Shops</h1>
+
+<table class="<%= cycle('style_productList') %>">
+  <thead>
+  <tr class=" <%= cycle('style_th') %>">
+    <th>ProductImage</th>
+    <th>ProductImage</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @productList.each do |e_shop| %>
+    <tr>
+      <td class="<%= cycle('style_image') %>"><%= image_tag(e_shop.productImage, :class => 'image_size') %></td>
+      <td class="text"><%= e_shop.productName %></td>
+      <td class="text"><%= e_shop.quantity %></td>
+      <td class="text"><%= e_shop.price %></td>
+      <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+      ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+      <td class="text"><%= truncate(strip_tags(e_shop.description), :length => 80) %></td>
+      <td class="text"><%= link_to 'Show', e_shop %></td>
+      <td class="text"><%= link_to 'Edit', edit_e_shop_path(e_shop) %></td>
+      <td class="text"><%= link_to 'Destroy', e_shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New Product', new_e_shop_path %>

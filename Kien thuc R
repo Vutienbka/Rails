@@ -1,0 +1,88 @@
+Một module trong ruby: tập hợp các phương thức, hằng số, lớp. Module giống class nhưng không thể tạo đối tượng và không thể kế thừa.
+
+Module sẽ gộp tất cả các phương thức, lớp, hằng số có liên quan tới nhau vào một module de tránh xung đột tên. Điều này giống package trong Java.
+
+Để sử dụng các phương thức và hằng số trong module, ta dùng include và extend module đấy vào
+ + include: mixes các method ở module như là instance method trong class.
+ + extend: mixes các method ở module như là class method trong class.
+
+vi du: 
+class A
+  include  MyFirstModule
+end
+
+class B
+  extend  MyFirstModule
+end
+
+=> call method of module
+A.new.say_hello
+B.say_hello
+
+1. Cấu trúc một object trong Ruby
+
+   + kclass: Một con trỏ trỏ đến class của object này
+   + iv_tbl: “instance variable table” một mảng băm chưa đựng các biến instance của đối tượng này
+   + flags: một tập các cờ trạng thái Boolean của Object như cờ báo trạng thái Object bị hỏng, bị garbage collection đánh dấu, bị khóa ...
+
+Mỗi một class hay module ngoài các trường ở trên còn có thêm 2 trường nữa:
+
+    + m_tbl: “Method Table”, một bảng băm chứa đựng địa chỉ các instance method của class hay module
+    + super: con trỏ trỏ đến lớp cha của nó
+
+2. Đa kế thừa trong Ruby
++ Ruby dùng cơ chế Mix-in để mix-in các module lại, điều này giúp Ruby giải quyết vấn đề đa kế thừa
+
+
+   + Mix-in là một cơ chế cho phép multi- inheritance
+   + Mix-in làm tăng khả năng tái sử dụng code và giải quyết được vấn đế “diamond problem” trong multi-inheritance
+   + Mix-in có thể xem như interface trong các ngôn ngữ C#, Java… "chỉ có điều các method của nó đã được implement"
+-----------------------------------------------------------------------
+module Mixin
+  def mixed_method
+         puts “Hello from mixin”
+  end
+end
+
+class A
+include Mixin
+end
+
+--> Ruby giải quyết được vấn đề “diamond problem” trong đa kế thừa
+
+module B
+    include A
+   def hello
+       “Hello from B”
+    end
+end
+
+module C
+    include A
+    def hello
+         “Hello from C”
+    end
+end
+
+class D
+include B
+include C
+end
+D.new.hello # => “Hello from C”
+
+=>Nếu chúng ta thay đổi thứ tự include thì kết quả sẽ thay đổi tương ứng
+
+class D
+include C
+include B
+end
+D.new.hello # => “Hello from B
+
+==> Cứ module nào được include sau sẽ được tìm kiếm method của module đó trước
+
+
+
+
+
+
+

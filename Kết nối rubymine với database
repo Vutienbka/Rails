@@ -1,0 +1,39 @@
+Tạo một project mới trong rubymine: 
+Xem hướng dẫn tại: https://viblo.asia/p/series-huong-dan-lap-trinh-ruby-on-rails-phan-3-rQOvPnnjeYj
+
++ rails new tên_project
++ dùng lệnh rails generate scaffold tên bảng tên trường:kiểu dữ liệu ...
+Để taok model và controller tương ứng
+
++ Kết nối database mysql
+  - thêm gem 'mysql2', '~> 0.4.4' vào gemfile
+  - thêm
+
+    default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: ROOT
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: eshop_development # Tên database
+
+test:
+  <<: *default
+  database: eshop_test # Tên database đêr test
+
+production:
+  <<: *default
+  database: eshop_development_production  # Tên database production
+  username: ROOT
+  password:
+
+vào database.yml
+
++ Đánh bundle install để cập nhật gemfile
+
++ Đánh lệnh rake db:create
+để tạo database

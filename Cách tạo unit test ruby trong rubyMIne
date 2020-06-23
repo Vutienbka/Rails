@@ -1,0 +1,25 @@
+1. Tạo Unit Test trong RubyMine
+ + Taọ project
+ + Tải thư viện unit-test bằng câu lệnh: gem install test-unit -v 3.3.4
+ + Tạo thư mục test và import file chứa code
+   chẳng hạn như file code có tên là: KanjiStringToNumber.rb
+   ta sẽ tao một file test có tên như: Test_KanjiStringToNumber.rb
+   thì trong file này ta sẽ import file KanjiStringToNumber.rb bằng 
+   require '../KanjiStringToNumber'
+   require 'test/unit'
+
+Và tạo class để test
+
+class MyTest < Test::Unit::TestCase
+  def test_basic
+  # Tạo các assert ở đây
+   assert_equal(expected, actual)
+  def
+
+def
+
+click chuot  phải và run
+
+
+
+

@@ -1,0 +1,5 @@
+Thêm trường vào model sử dụng migration
+ + rails generate migration add_(tên trường)_to_(tên Model) tên trường:kiểu dữ liệu
+Loại bỏ trường khỏi model
+  + 
+

@@ -55,7 +55,8 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      # carts_url
+      format.html { redirect_to '/', notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,3 +72,4 @@ class CartsController < ApplicationController
       params.fetch(:cart, {})
     end
 end
+

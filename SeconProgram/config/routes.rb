@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   get 'store/index'
   get 'show/productList'
   get 'by/product', to: 'by#product'

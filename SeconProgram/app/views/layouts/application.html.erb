@@ -20,9 +20,9 @@
       <!--  current_cart lay doi tuong cart hien tai nen no se ngam dinh tao @cart-->
       <!--@cart va lien ket voi _cart.html.erb va render no vi cart hien tai la giỏ hàng cụ th
       ể nên sẽ tương đương với carts/cart_id -->
-      <%= hide_cart_if(current_cart.items.empty?, :id => "cart") do%>
+      <div style=" display:none ">
         <%= render current_cart %>
-      <% end %>
+      </div>
     </div>
     <a href="#">Home</a><br />
     <a href="#">FAQ</a><br />

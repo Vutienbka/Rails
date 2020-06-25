@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
     # Save vao CSDL item
 
     @item = @cart.add_product(product.id)
+
     respond_to do |format|
       if @item.save
         # @item.cart

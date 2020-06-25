@@ -9,6 +9,9 @@
     left: 50%;
     margin: -35px 0 0 -35px;
 }
+.change_width{
+    width: 100px;
+}
 .style_table{
     background: darkcyan;
     border: 1px solid #999999;

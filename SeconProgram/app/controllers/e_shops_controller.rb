@@ -5,6 +5,8 @@ class EShopsController < ApplicationController
   # GET /e_shops.json
   def index
     @e_shops = EShop.all
+    # @e_shops_hot = EShop.limit(5).order()
+    # @e_shops = EShop.order('id desc').limit(3)
   end
 
   # GET /e_shops/1

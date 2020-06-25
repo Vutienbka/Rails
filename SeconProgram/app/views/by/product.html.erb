@@ -1,0 +1,19 @@
+
+<div id="columns">
+  <div id="side">
+    <div class="<%= cycle('style_image') %> change_width"><%= image_tag(@product.e_shop.productImage, width: 150, height: 150) %></div>
+  </div>
+
+  <div id="main" style="background: #f2f2f2; height: 100px">
+
+      <div class="text"><%= @product.e_shop.productName %></div>
+      <div class="text"><%= @product.quantity %></div>
+      <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+      <div class="text"><%= number_to_currency(@product.e_shop.price, :unit=>'đ', delimiter: "", format: "%n %u") %></div>
+      <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+      ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+      <div class="text"><%= truncate(strip_tags(@product.e_shop.description), :length => 80) %></div>
+      <div class="text"><%= truncate(strip_tags(@product.e_shop.manufacturer), :length => 80) %></div>
+      <div class="text"><%= number_to_currency(@product.total_price, unit: 'đ', delimiter: "", format: "%n %u") %></div>
+  </div>
+</div>

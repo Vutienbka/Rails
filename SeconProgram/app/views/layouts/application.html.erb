@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SeconProgram</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>SeconProgram</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body id="store">
+<div id="banner">
+  <%#= image_tag("logo.png") %>
+  <%= @page_title || "E SHOP" %>
+</div>
+<div id="columns">
+  <div id="side">
+    <div id="cart">
+      <!--  current_cart lay doi tuong cart hien tai nen no se ngam dinh tao @cart-->
+      <!--@cart va lien ket voi _cart.html.erb va render no vi cart hien tai la giỏ hàng cụ th
+      ể nên sẽ tương đương với carts/cart_id -->
+      <%= hide_cart_if(current_cart.items.empty?, :id => "cart") do%>
+        <%= render current_cart %>
+      <% end %>
+    </div>
+    <a href="#">Home</a><br />
+    <a href="#">FAQ</a><br />
+    <a href="#">News</a><br />
+    <a href="#">Contact</a><br />
+  </div>
+  <div id="main">
     <%= yield %>
-  </body>
+  </div>
+</div>
+</body>
 </html>

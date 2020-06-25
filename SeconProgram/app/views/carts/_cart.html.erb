@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<h2>Your cart</h2>
+<table class="<%= cycle('style_table') %>">
+  <thead>
+  <tr class=" <%= cycle('style_th') %>">
+    <th>Image</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Manufacturer</th>
+    <th>Total_price</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <!--  cai nay tuong duong voi @cart.items.each do |item|-->
+  <!--  items se goi _item.html.ern -->
+  <!--  Do chung ta sung sung render nen rail se tu hieu-->
+<!--  vi items la mot danh sach Rails sẽ lặp qua danh sách đó, -->
+<!--  với mỗi lần lặp thì Rails lại gọi file partial tương ứng là _item.html.erb-->
+  <%= render cart.items %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="text">Total</td>
+    <td><%= number_to_currency(cart.total_price, unit: 'đ', delimiter: "", format: "%n %u") %></td>
+    <td class="text"><%= link_to 'By All products'%></td>
+  </tr>
+  </tbody>
+</table>
+

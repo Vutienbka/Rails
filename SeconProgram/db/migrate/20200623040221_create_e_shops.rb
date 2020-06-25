@@ -4,7 +4,7 @@ class CreateEShops < ActiveRecord::Migration[6.0]
       t.string :productImage
       t.string :productName
       t.integer :quantity
-      t.float :price
+      t.float :price, precision: 10, scale: 0
       t.string :description
 
       t.timestamps null: false

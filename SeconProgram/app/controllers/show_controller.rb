@@ -1,5 +1,5 @@
 class ShowController < ApplicationController
   def productList
-    @productList = EShop.all
+    @product = EShop.all
   end
 end

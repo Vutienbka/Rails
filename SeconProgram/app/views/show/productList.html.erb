@@ -1,34 +1,52 @@
-<h1>E Shops</h1>
+<body id="store">
+<div id="banner">
+  <%#= image_tag("logo.png") %>
+  <%= @page_title || "E SHOP" %>
+</div>
+<div id="columns">
+  <div id="side">
+    <a href="#">Home</a><br />
+    <a href="#">FAQ</a><br />
+    <a href="#">News</a><br />
+    <a href="#">Contact</a><br />
+  </div>
 
-<table class="<%= cycle('style_productList') %>">
-  <thead>
-  <tr class=" <%= cycle('style_th') %>">
-    <th>ProductImage</th>
-    <th>ProductImage</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-  </thead>
+  <div id="main">
+    <p id="notice"><%= notice %></p>
+    <h1>Product List</h1>
 
-  <tbody>
-  <% @productList.each do |e_shop| %>
-    <tr>
-      <td class="<%= cycle('style_image') %>"><%= image_tag(e_shop.productImage, :class => 'image_size') %></td>
-      <td class="text"><%= e_shop.productName %></td>
-      <td class="text"><%= e_shop.quantity %></td>
-      <td class="text"><%= e_shop.price %></td>
-      <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
-      ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
-      <td class="text"><%= truncate(strip_tags(e_shop.description), :length => 80) %></td>
-      <td class="text"><%= link_to 'Show', e_shop %></td>
-      <td class="text"><%= link_to 'Edit', edit_e_shop_path(e_shop) %></td>
-      <td class="text"><%= link_to 'Destroy', e_shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    <table class="<%= cycle('style_table') %>">
+      <thead>
+      <tr class=" <%= cycle('style_th') %>">
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Manufacturer</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
 
-<br>
-
-<%= link_to 'Add New Product', new_e_shop_path %>
+      <tbody>
+      <% @product.each do |e_shop| %>
+        <tr>
+          <td class="<%= cycle('style_image') %> change_width"><%= image_tag(e_shop.productImage, :class => 'image_size') %></td>
+          <td class="text"><%= e_shop.productName %></td>
+          <td class="text"><%= e_shop.quantity %></td>
+          <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+          <td class="text"><%= number_to_currency(e_shop.price, :unit=>'đ', delimiter: "", format: "%n %u") %></td>
+          <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+          ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+          <td class="text"><%= truncate(strip_tags(e_shop.description), :length => 80) %></td>
+          <td class="text"><%= truncate(strip_tags(e_shop.manufacturer), :length => 80) %></td>
+          <!--Truyen id cua e_shop hien tai vao duong dan items_path-->
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= link_to 'Add New Product', new_e_shop_path %>
+  </div>
+</div>
+</body>

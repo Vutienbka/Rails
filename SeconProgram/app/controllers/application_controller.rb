@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # Mỗi khi có người dùng nào truy cập vào website thì sẽ tạo một đối tượng cart rồi lưu vào CSDL
-  private
+
   def current_cart
     # Kiem tra va duy tri phien lam viec hien tai voi cart tuong ung thong qua cart_id
     Cart.find(session[:cart_id])

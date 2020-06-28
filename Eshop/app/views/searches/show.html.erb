@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<h2>Search result</h2>
+<% if @search.search_products.empty?%>
+  <p>No records found</p>
+  <% else %>
+<table class="<%= cycle('style_table') %>">
+  <thead>
+  <tr class=" <%= cycle('style_th') %>">
+    <th>Image</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Manufacturer</th>
+    <th>Total_price</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%=   @search.search_products.each do |item| %>
+    <tr>
+      <td class="<%= cycle('style_image') %> change_width"><%= image_tag(item.productImage, :class => 'image_size') %></td>
+      <td class="text"><%= item.productName %></td>
+      <td class="text"><%= item.quantity %></td>
+      <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+      <td class="text"><%= number_to_currency(item.price, :unit=>'đ', delimiter: "", format: "%n %u") %></td>
+      <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+      ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+      <td class="text"><%= truncate(strip_tags(item.description), :length => 80) %></td>
+      <td class="text"><%= truncate(strip_tags(item.manufacturer), :length => 80) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

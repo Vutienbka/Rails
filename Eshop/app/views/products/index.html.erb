@@ -1,0 +1,56 @@
+<div class="container" >
+  <p id="notice" style="color: green"><%= notice %></p>
+  <%= form_tag products_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "search" %>
+  <% end %>
+<%= link_to "Advanced search", new_search_path %>
+  <h1>Product List</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr class="text-center">
+      <th>Image</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Manufacturer</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @product.each do |product| %>
+      <tr>
+        <td class="<%= cycle('style_image') %> change_width"><%= image_tag(product.productImage, :class => 'image_size') %></td>
+        <td class="text"><%= product.productName %></td>
+        <td class="text"><%= product.quantity %></td>
+        <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+        <td class="text"><%= number_to_currency(product.price, :unit=>'đ', delimiter: "", format: "%n %u") %></td>
+        <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+        ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+        <td class="text"><%= truncate(strip_tags(product.description), :length => 80) %></td>
+        <td class="text"><%= truncate(strip_tags(product.manufacturer), :length => 80) %></td>
+        <td class="text"><%= button_to 'Add to Cart', items_path(:id => product)%></td>
+
+        <td class="text"><%= button_to 'Show', product, method: :get,:class => 'btn btn-primary'%></td>
+        <td class="text"><%= button_to 'Edit', edit_product_path(product), method: :get,:class => 'btn btn-success' %></td>
+        <td class="text"><%= button_to'Destroy', product, method: :delete, confirm: 'Are you sure?', :class => "btn btn-danger"%></td>
+        <td class="text"><%= link_to 'Destroy',"products/#{product.id}/destroy", method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Add New Product', new_product_path %>
+  <!--  <div style="text-align: center">-->
+  <!--    <span><%#= link_to 'Previous Page', products_path(page: @page - 1) %></span>-->
+  <!--    <span><%#= link_to 'Next Page', products_path(page: @page + 1) %></span>-->
+  <!--  </div>-->
+
+  <div><%= pagy_bootstrap_nav(@pagy).html_safe %></div>
+  <!--  <div><%#= pagy_bootstrap_nav_js(@pagy).html_safe %></div>-->
+  <!--  <div><%#= pagy_bootstrap_combo_nav_js(@pagy).html_safe %></div>-->
+
+</div>
+
+

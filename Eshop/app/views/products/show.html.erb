@@ -1,0 +1,35 @@
+
+<p id="notice" style="color: green"><%= notice %></p>
+<div class="container" >
+  <h1>Product Detail</h1>
+
+  <table class="<%= cycle('style_table') %> table table-striped">
+    <thead>
+    <tr <%= cycle('style_th') %>>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Manufacturer</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="<%= cycle('style_image') %> change_width"><%= image_tag(@product.productImage, :class => 'image_size') %></td>
+        <td class="text"><%= @product.productName %></td>
+        <td class="text"><%= @product.quantity %></td>
+        <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+        <td class="text"><%= number_to_currency(@product.price, :unit=>'đ', delimiter: "", format: "%n %u") %></td>
+        <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+        ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+        <td class="text"><%= truncate(strip_tags(@product.description), :length => 80) %></td>
+        <td class="text"><%= truncate(strip_tags(@product.manufacturer), :length => 80) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>
+
+

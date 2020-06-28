@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1>Product List</h1>
 <td><%= link_to 'My Cart', carts_path%></td>
-<table class="<%= cycle('style_table') %>">
+<table class="<%= cycle('style_table') %> table table-stripped">
   <thead>
   <tr class=" <%= cycle('style_th') %>">
     <th>Image</th>
@@ -31,7 +31,7 @@
 
       <td class="text"><%= link_to 'Show', e_shop %></td>
       <td class="text"><%= link_to 'Edit', edit_e_shop_path(e_shop) %></td>
-      <td class="text"><%= link_to 'Destroy', e_shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td class="text"><%= link_to 'Destroy', e_shop, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success" %></td>
     </tr>
   <% end %>
   </tbody>

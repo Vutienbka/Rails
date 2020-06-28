@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<h2>Your cart</h2>
+<table class="<%= cycle('style_table') %>">
+  <thead>
+  <tr class=" <%= cycle('style_th') %>">
+    <th>Image</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Manufacturer</th>
+    <th>Total_price</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%=  @cart.items.each do |item| %>
+    <tr>
+      <td class="<%= cycle('style_image') %> change_width"><%= image_tag(item.product.productImage, :class => 'image_size') %></td>
+      <td class="text"><%= item.product.productName %></td>
+      <td class="text"><%= item.quantity %></td>
+      <!-- number_to_currency chuyen so sang chuoi va them ky tu mac dinh $-->
+      <td class="text"><%= number_to_currency(item.product.price, :unit=>'đ', delimiter: "", format: "%n %u") %></td>
+      <!-- Hàm truncate() có tác dụng lấy một lượng kí tự nhất định, ở đây chúng ta lấy 80 kí tự,
+      ngoài ra chúng ta còn dùng hàm strip_tags() để loại bỏ các thẻ HTML trong chuỗi cho trước.-->
+      <td class="text"><%= truncate(strip_tags(item.product.description), :length => 80) %></td>
+      <td class="text"><%= truncate(strip_tags(item.product.manufacturer), :length => 80) %></td>
+      <td class="text"><%= number_to_currency(item.total_price, unit: 'đ', delimiter: "", format: "%n %u") %></td>
+      <td class="text"><button style="text-decoration: none"><%= link_to 'By this product' %></button></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="text">Total</td>
+    <td><%= number_to_currency(@cart.total_price, unit: 'đ', delimiter: "", format: "%n %u") %></td>
+    <td class="text"><%= link_to 'By All products'%></td>
+  </tr>
+  </tbody>
+</table>

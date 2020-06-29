@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     cart
   end
 
+  helper_method :current_cart
   # Chúng ta có thể gọi đến phương thức này trong file View khac nhau ma khong bi loi
   # helper_method :current_cart
 end

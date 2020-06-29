@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td class="text">Order Id</td>
+      <th class="text">Order Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= link_to 'Show', order %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Destroy', "orders/#{order.id}/destroy", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back to product list', products_path %>

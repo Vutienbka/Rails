@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Eshop</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="bootstrap.min.js" type="text/javascript"></script>
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>EShop</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body id="store">
+<div id="banner">
+  <%#= image_tag("logo.png") %>
+  <%= @page_title || "E SHOP" %>
+
+  <nav class="navbar">
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav" style="list-style: none; font-size: 20px">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My orders', orders_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Carts', carts_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Product list', products_path %>
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div id="columns">
+  <div id="side">
+    <div id="cart">
+      <!--  current_cart lay doi tuong cart hien tai nen no se ngam dinh tao @cart-->
+      <!--@cart va lien ket voi _cart.html.erb va render no vi cart hien tai la giỏ hàng cụ th
+      ể nên sẽ tương đương với carts/cart_id -->
+<!--      <div style=" display:none ">-->
+        <%#= render current_cart %>
+<!--      </div>-->
+    </div>
+    <a href="#">Home</a><br />
+    <a href="#">FAQ</a><br />
+    <a href="#">News</a><br />
+    <a href="#">Contact</a><br />
+  </div>
+  <div id="main">
     <%= yield %>
-
-  <%# if action_name == "index" %>
-<!--    <p>Hello</p>-->
-    <%# end %>
-
-    <%# if controller_name == "products" %>
-    <!--    <p>Hello</p>-->
-    <%# end %>
-  </body>
+  </div>
+</div>
+</body>
 </html>
